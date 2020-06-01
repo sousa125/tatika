@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 import os 
 from flask import Flask, request
-from flask_cors import CORS
+#from flask_cors import CORS
 import pandas as pd
 from StringIO import StringIO
 
 app = Flask(__name__)
-cors = CORS(app, resource={r"/*":{"origins": "*"}})
+#cors = CORS(app, resource={r"/*":{"origins": "*"}})
 
 
 @app.route("/", methods=['GET'])
