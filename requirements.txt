@@ -2,9 +2,4 @@ Flask
 Flask-Cors
 Flask-RESTful
 pandas
-geopandas
-gunicorn
-itsdangerous
-Jinja2
-peewee
-Werkzeug
+json
