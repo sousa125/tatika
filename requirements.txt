@@ -3,7 +3,6 @@ Flask-Cors
 Flask-RESTful
 pandas
 geopandas
-io
 gunicorn
 itsdangerous
 Jinja2
