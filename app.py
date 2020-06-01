@@ -16,24 +16,24 @@ def index():
 def a():
     return 'aaaaaaaaaaaaaa'
 
-@app.route('/up-csv', methods=['POST'])
-def upload_csv():
+# @app.route('/up-csv', methods=['POST'])
+# def upload_csv():
     
-    data = StringIO(request.data)
-    df = pd.read_csv(data, sep=",", decimal=',')
-    df['UP'] = (df['MÁXIMO'] - df['ABERTURA'])*100/df['ABERTURA']
-    df['DOWN'] = (df['ABERTURA'] - df['MÍNIMO'])*100/df['ABERTURA']
-    ABERTURA = 7.20
-    print("VENDA")
-    print("75%: {}".format((ABERTURA*(1 + df.describe()['UP']['25%']/100)).round(2)))
-    print("50%: {}".format((ABERTURA*(1 + df.describe()['UP']['50%']/100)).round(2)))
-    print("25%: {}".format((ABERTURA*(1 + df.describe()['UP']['75%']/100)).round(2)))
+#     data = StringIO(request.data)
+#     df = pd.read_csv(data, sep=",", decimal=',')
+#     df['UP'] = (df['MÁXIMO'] - df['ABERTURA'])*100/df['ABERTURA']
+#     df['DOWN'] = (df['ABERTURA'] - df['MÍNIMO'])*100/df['ABERTURA']
+#     ABERTURA = 7.20
+#     print("VENDA")
+#     print("75%: {}".format((ABERTURA*(1 + df.describe()['UP']['25%']/100)).round(2)))
+#     print("50%: {}".format((ABERTURA*(1 + df.describe()['UP']['50%']/100)).round(2)))
+#     print("25%: {}".format((ABERTURA*(1 + df.describe()['UP']['75%']/100)).round(2)))
 
-    print("COMPRA")
-    print("75%: {}".format((ABERTURA*(1 - df.describe()['DOWN']['25%']/100)).round(2)))
-    print("50%: {}".format((ABERTURA*(1 - df.describe()['DOWN']['50%']/100)).round(2)))
-    print("25%: {}".format((ABERTURA*(1 - df.describe()['DOWN']['75%']/100)).round(2)))
-    return "OK"
+#     print("COMPRA")
+#     print("75%: {}".format((ABERTURA*(1 - df.describe()['DOWN']['25%']/100)).round(2)))
+#     print("50%: {}".format((ABERTURA*(1 - df.describe()['DOWN']['50%']/100)).round(2)))
+#     print("25%: {}".format((ABERTURA*(1 - df.describe()['DOWN']['75%']/100)).round(2)))
+#     return "OK"
 
 
 
