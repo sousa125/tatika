@@ -1,0 +1,1 @@
+Crud flask de uma pokedex
