@@ -14,13 +14,13 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 def index():
     return 'Seja bem vindo ao TATIKA!!!'
 
-@app.route('/up-csv/<abertura>', methods=['GET'])
+@app.route('/up-csv/<acao>/<abertura>', methods=['GET'])
 @cross_origin()
-def upload_csv(abertura):
+def upload_csv(acao, abertura):
     
 
 
-    df = pd.read_csv('AMAR3.csv', decimal=',')
+    df = pd.read_csv(acao+'.csv', decimal=',')
     df['UP'] = (df['MÁXIMO'] - df['ABERTURA'])*100/df['ABERTURA']
     df['DOWN'] = (df['ABERTURA'] - df['MÍNIMO'])*100/df['ABERTURA']
     ABERTURA = float(abertura)
