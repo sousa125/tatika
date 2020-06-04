@@ -1,18 +1,21 @@
 # -*- coding: utf-8 -*-
 import os
+from flask_cors import CORS, cross_origin
 from flask import Flask, request
 import pandas as pd
 import json
 
 
 app = Flask(__name__)
-
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/", methods=['GET'])
 def index():
     return 'Seja bem vindo ao TATIKA!!!'
 
 @app.route('/up-csv/<abertura>', methods=['GET'])
+@cross_origin()
 def upload_csv(abertura):
     
 
