@@ -26,7 +26,7 @@ def upload_csv(abertura):
     ABERTURA = float(abertura)
     
     ordem_v = ('{"ordem": "venda",')+('"75%": "R${}",'.format((ABERTURA*(1 + df.describe()['UP']['25%']/100)).round(2)))+('"50%": "R${}",'.format((ABERTURA*(1 + df.describe()['UP']['50%']/100)).round(2)))+('"25%": "R${}"'.format((ABERTURA*(1 + df.describe()['UP']['75%']/100)).round(2)))+"}"
-    ordem_c = ('{"ordem": "compra",')+('"75%": "R${}",'.format((ABERTURA*(1 + df.describe()['DOWN']['25%']/100)).round(2)))+('"50%": "R${}",'.format((ABERTURA*(1 + df.describe()['DOWN']['50%']/100)).round(2)))+('"25%": "R${}"'.format((ABERTURA*(1 + df.describe()['DOWN']['75%']/100)).round(2)))+"}"
+    ordem_c = ('{"ordem": "compra",')+('"75%": "R${}",'.format((ABERTURA*(1 - df.describe()['DOWN']['25%']/100)).round(2)))+('"50%": "R${}",'.format((ABERTURA*(1 - df.describe()['DOWN']['50%']/100)).round(2)))+('"25%": "R${}"'.format((ABERTURA*(1 - df.describe()['DOWN']['75%']/100)).round(2)))+"}"
     compra = df.describe()['DOWN'].to_json() 
     venda = df.describe()['UP'].to_json()
     json = '['+ordem_c+','+compra+','+ordem_v+','+venda+']'
