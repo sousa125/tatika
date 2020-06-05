@@ -4,7 +4,7 @@ from flask_cors import CORS, cross_origin
 from flask import Flask, request
 import pandas as pd
 import json
-
+import yfinance as yf
 
 
 
