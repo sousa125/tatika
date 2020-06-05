@@ -12,6 +12,11 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
+msft = yf.Ticker("MSFT")
+msft.info
+hist = msft.history()
+print(hist)
+
 @app.route("/", methods=['GET'])
 def index():
     return 'Seja bem vindo ao TATIKA!!!'
