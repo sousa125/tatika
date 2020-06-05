@@ -6,32 +6,11 @@ import pandas as pd
 import json
 
 
-import unirest
 
 
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
-API_URL = 'apidojo-yahoo-finance-v1.p.rapidapi.com'
-API_KEY = 'dda2e60a90mshc1e20a3757953eap1af18bjsn242463ad19df'
-response = unirest.post(API_URL,
-  headers={
-    "X-RapidAPI-Key": API_KEY,
-    "Content-Type": "stock/v2/get-historical-data"
-  },
-  params={
-    "period1": "1546448400",
-    "period2": "1562086800",
-    "symbol": "AMAR3"
-
-
-  }
-)
-
-response.code # The HTTP status code
-response.headers # The HTTP headers
-response.body # The parsed response
-response.raw_body # The unparsed response
 
 @app.route("/", methods=['GET'])
 def index():
