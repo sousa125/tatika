@@ -13,7 +13,7 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 msft = yf.Ticker("MSFT")
-msft.info
+#msft.info
 hist = msft.history()
 print(hist)
 
