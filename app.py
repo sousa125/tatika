@@ -15,6 +15,8 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 msft = yf.Ticker("AMAR3.SA")
 #msft.info
 hist = msft.history()
+hist.drop(hist.tail(1).index,inplace=True) 
+
 print(hist)
 
 @app.route("/", methods=['GET'])
@@ -26,8 +28,8 @@ def index():
 def upload_csv(acao, abertura):
     
     symbol = yf.Ticker(acao)
-    df = msft.history("3mo")
-    df.drop(df.tail(1).index,inplace=True) # valid periods: 1d,5d,1mo,3mo,6mo,1y,2y,5y,10y,ytd,max
+    df = msft.history("3mo")# valid periods: 1d,5d,1mo,3mo,6mo,1y,2y,5y,10y,ytd,max
+    df.drop(df.tail(1).index,inplace=True) 
     df['UP'] = (df['High'] - df['Open'])*100/df['Open']
     df['DOWN'] = (df['Open'] - df['Low'])*100/df['Open']
     ABERTURA = float(abertura)
