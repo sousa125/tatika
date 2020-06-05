@@ -27,6 +27,12 @@ response = unirest.post(API_URL,
 
   }
 )
+
+response.code # The HTTP status code
+response.headers # The HTTP headers
+response.body # The parsed response
+response.raw_body # The unparsed response
+
 @app.route("/", methods=['GET'])
 def index():
     return 'Seja bem vindo ao TATIKA!!!'
