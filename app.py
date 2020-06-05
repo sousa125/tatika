@@ -16,7 +16,7 @@ def index():
 @app.route('/up-csv/<acao>/<abertura>', methods=['GET'])
 @cross_origin()
 def get_history(acao, abertura):
-    if acao.tail(3)!= '.SA':
+    if '.SA' not in acao:
         acao = acao+'.SA'
     symbol = yf.Ticker(acao)
     df = symbol.history("3mo")# valid periods: 1d,5d,1mo,3mo,6mo,1y,2y,5y,10y,ytd,max
