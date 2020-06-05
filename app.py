@@ -26,8 +26,8 @@ def index():
 def upload_csv(acao, abertura):
     
     symbol = yf.Ticker(acao)
-    df = msft.history()
-    #df = pd.read_csv(acao+'.csv', decimal=',')
+    df = msft.history("3mo")
+    df.drop(df.tail(1).index,inplace=True) # valid periods: 1d,5d,1mo,3mo,6mo,1y,2y,5y,10y,ytd,max
     df['UP'] = (df['High'] - df['Open'])*100/df['Open']
     df['DOWN'] = (df['Open'] - df['Low'])*100/df['Open']
     ABERTURA = float(abertura)

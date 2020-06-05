@@ -1,1 +1,1 @@
-Crud flask de uma pokedex
+Serviço python para estatíticas de ações
