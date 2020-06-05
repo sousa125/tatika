@@ -12,7 +12,7 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-msft = yf.Ticker("MSFT")
+msft = yf.Ticker("AMAR3")
 #msft.info
 hist = msft.history()
 print(hist)
