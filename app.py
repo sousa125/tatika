@@ -31,7 +31,8 @@ def get_variation(acao):
         acao = acao+'.SA'
     symbol = yf.Ticker(acao)
     df = symbol.history("3mo")# valid periods: 1d,5d,1mo,3mo,6mo,1y,2y,5y,10y,ytd,max
-    
+    df['Close'].shift(1)
+    df.drop(df.head(1), inplace=True)
     df['up'] = (df['High'] - df['Close'])*100/df['Close']
     df['down'] = (df['Close'] - df['Low'])*100/df['Close']
 
