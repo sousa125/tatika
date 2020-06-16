@@ -13,9 +13,9 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 def index():
     return 'Seja bem vindo ao TATIKA!!!'
 
-@app.route('/up-csv/<acao>/<abertura>', methods=['GET'])
+@app.route('/get-variation/<acao>', methods=['GET'])
 @cross_origin()
-def get_history(acao, abertura):
+def get_variation(acao):
     if '.SA' not in acao:
         acao = acao+'.SA'
     symbol = yf.Ticker(acao)
@@ -23,13 +23,14 @@ def get_history(acao, abertura):
     df.drop(df.tail(1).index,inplace=True) 
     df['up'] = (df['High'] - df['Open'])*100/df['Open']
     df['down'] = (df['Open'] - df['Low'])*100/df['Open']
-    ABERTURA = float(abertura)
+
+    FECHAMENTO = df.tail(1)['Close'][0] #valor de fechamento do dia anterior
     
-    ordem_v = ('{"ordem": "venda",')+('"75%": "R${}",'.format((ABERTURA*(1 + df.describe()['up']['25%']/100)).round(2)))+('"50%": "R${}",'.format((ABERTURA*(1 + df.describe()['up']['50%']/100)).round(2)))+('"25%": "R${}"'.format((ABERTURA*(1 + df.describe()['up']['75%']/100)).round(2)))+"}"
-    ordem_c = ('{"ordem": "compra",')+('"75%": "R${}",'.format((ABERTURA*(1 - df.describe()['down']['25%']/100)).round(2)))+('"50%": "R${}",'.format((ABERTURA*(1 - df.describe()['down']['50%']/100)).round(2)))+('"25%": "R${}"'.format((ABERTURA*(1 - df.describe()['down']['75%']/100)).round(2)))+"}"
+    ordem_v = ('{"ordem": "venda",')+('"75%": "R${}",'.format((FECHAMENTO*(1 + df.describe()['up']['25%']/100)).round(2)))+('"50%": "R${}",'.format((FECHAMENTO*(1 + df.describe()['up']['50%']/100)).round(2)))+('"25%": "R${}"'.format((FECHAMENTO*(1 + df.describe()['up']['75%']/100)).round(2)))+"}"
+    ordem_c = ('{"ordem": "compra",')+('"75%": "R${}",'.format((FECHAMENTO*(1 - df.describe()['down']['25%']/100)).round(2)))+('"50%": "R${}",'.format((FECHAMENTO*(1 - df.describe()['down']['50%']/100)).round(2)))+('"25%": "R${}"'.format((FECHAMENTO*(1 - df.describe()['down']['75%']/100)).round(2)))+"}"
     compra = df.describe()['down'].to_json() 
     venda = df.describe()['up'].to_json()
-    json = '['+ordem_c+','+compra+','+ordem_v+','+venda+']'
+    json = '['+ordem_c+','+compra+','+ordem_v+','+venda+','+'{fechamento: '+FECHAMENTO+'}'+']'
     
     return json
 def main():
