@@ -32,8 +32,8 @@ def get_variation(acao):
     symbol = yf.Ticker(acao)
     df = symbol.history("3mo")# valid periods: 1d,5d,1mo,3mo,6mo,1y,2y,5y,10y,ytd,max
     
-    df['up'] = (df['High'] - df['Open'])*100/df['Open']
-    df['down'] = (df['Open'] - df['Low'])*100/df['Open']
+    df['up'] = (df['High'] - df['Close'])*100/df['Close']
+    df['down'] = (df['Close'] - df['Low'])*100/df['Close']
 
     FECHAMENTO = df.tail(1)['Close'][0] #valor de fechamento do dia anterior
     
