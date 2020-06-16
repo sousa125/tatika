@@ -31,11 +31,12 @@ def get_variation(acao):
         acao = acao+'.SA'
     symbol = yf.Ticker(acao)
     df = symbol.history("3mo")# valid periods: 1d,5d,1mo,3mo,6mo,1y,2y,5y,10y,ytd,max
-    df.drop(df.tail(1).index,inplace=True) 
+    
     df['up'] = (df['High'] - df['Open'])*100/df['Open']
     df['down'] = (df['Open'] - df['Low'])*100/df['Open']
 
     FECHAMENTO = df.tail(1)['Close'][0] #valor de fechamento do dia anterior
+    df.drop(df.tail(1).index,inplace=True) 
     
     ordem_v = ('{"ordem": "venda",')+('"75%": "R${}",'.format((FECHAMENTO*(1 + df.describe()['up']['25%']/100)).round(2)))+('"50%": "R${}",'.format((FECHAMENTO*(1 + df.describe()['up']['50%']/100)).round(2)))+('"25%": "R${}"'.format((FECHAMENTO*(1 + df.describe()['up']['75%']/100)).round(2)))+"}"
     ordem_c = ('{"ordem": "compra",')+('"75%": "R${}",'.format((FECHAMENTO*(1 - df.describe()['down']['25%']/100)).round(2)))+('"50%": "R${}",'.format((FECHAMENTO*(1 - df.describe()['down']['50%']/100)).round(2)))+('"25%": "R${}"'.format((FECHAMENTO*(1 - df.describe()['down']['75%']/100)).round(2)))+"}"
