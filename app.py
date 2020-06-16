@@ -30,7 +30,7 @@ def get_variation(acao):
     ordem_c = ('{"ordem": "compra",')+('"75%": "R${}",'.format((FECHAMENTO*(1 - df.describe()['down']['25%']/100)).round(2)))+('"50%": "R${}",'.format((FECHAMENTO*(1 - df.describe()['down']['50%']/100)).round(2)))+('"25%": "R${}"'.format((FECHAMENTO*(1 - df.describe()['down']['75%']/100)).round(2)))+"}"
     compra = df.describe()['down'].to_json() 
     venda = df.describe()['up'].to_json()
-    json = '['+ordem_c+','+compra+','+ordem_v+','+venda+','+'{fechamento: "'+FECHAMENTO+'"}'+']'
+    json = '['+ordem_c+','+compra+','+ordem_v+','+venda+']'
     
     return json
 def main():
