@@ -1,3 +1,4 @@
+#Author: José de Sousa
 # -*- coding: utf-8 -*-
 import os
 from flask_cors import CORS, cross_origin
