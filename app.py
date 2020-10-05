@@ -5,7 +5,7 @@ from flask import Flask, request
 import pandas as pd
 import json
 import yfinance as yf
-
+#adicionando esse comentário aqui pro hacktoberfest
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
