@@ -13,16 +13,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 def index():
     return 'Seja bem vindo ao TATIKA!!!'
 
-@app.route('/get-close/<acao>', methods=['GET'])
-@cross_origin()
-def get_close(acao):
-    if '.SA' not in acao:
-        acao = acao+'.SA'
-    symbol = yf.Ticker(acao)
-    df = symbol.history("3mo")# valid periods: 1d,5d,1mo,3mo,6mo,1y,2y,5y,10y,ytd,max
-    df = df.drop(df.tail(1).index)
-    response = df.tail(1)['Close'][0]
-    return str(response)
+
 
 @app.route('/get-variation/<acao>', methods=['GET'])
 @cross_origin()
