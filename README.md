@@ -1,4 +1,4 @@
-# Tatika
+# Tatika hacktoberfest
 ### Serviço utilizado para consultar informações sobre ações da bolsa de valores por meio da API Yahoo Finance
 
 O serviço utiliza a API Yahoo Finance para obter dados sobre as ações, para então analisar elas utilizando a biblioteca pandas.
