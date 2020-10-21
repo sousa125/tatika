@@ -23,9 +23,6 @@ DATA          | ABERTURA | MÍNIMO | MÁXIMO
 Nesse exemplo temos dados de 10 dias da ação BKBR3. <br>
 Após algumas manipulações utilizando o pandas, temos o seguinte resultado:
 
-Em 75% dos dias analisados a ação chega a valorizar 2.07% e/ou desvalorizar 1.56% <br>
-Em 50% dos dias analisados a ação chega a valorizar 3.94% e/ou desvalorizar 3.25% <br>
-Em 25% dos dias analisados a ação chega a valorizar 7.51% e/ou desvalorizar 6.30% <br>
 
 Com isso o investidor tem uma noção de como costuma ser o comportamento da ação em análise.
 
